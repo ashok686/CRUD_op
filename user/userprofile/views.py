@@ -1,4 +1,5 @@
 import imp
+from django.db import connections
 from django.dispatch import receiver
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -11,6 +12,7 @@ from .serializers import employerSerializers, userSerializers ,userEmployeeJoin
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
+import psycopg2
 
 # from user.userprofile import serializers
 
@@ -21,6 +23,7 @@ from django.http.response import JsonResponse
 def get(request):
     if request.method=='GET':
         allUsers = user.objects.all()
+        print(allUsers);
         serializer = userSerializers(allUsers,many=True)
         return JsonResponse(serializer.data,safe=False)
 
@@ -94,7 +97,17 @@ def joinUserEmployer(request):
     allusers = Employer.objects.all()
     serializer = userEmployeeJoin(allusers,many=True)
     return JsonResponse(serializer.data,safe=False)
-            
+
+def getKeyAndValue():
+    allUsers = user.objects.filter(firstname = 'Ashok  ')
+    print(allUsers)
+
+
+
+
+getKeyAndValue()
+        
+
 
 
    

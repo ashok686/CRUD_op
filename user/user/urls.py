@@ -31,6 +31,8 @@ urlpatterns = [
     path('createEmployer/',views.createEmployer ,name='createEmployer'),
     path('deleteEmployer/<int:id>',views.deleteEmployer ,name='deleteEmployer'),
     path('joinUserEmployer/',views.joinUserEmployer ,name='joinUserEmployer'),
+    # path('getKeyValueData/',views.getKeyValueData ,name='getKeyValueData'),
+
 
 
 ]
